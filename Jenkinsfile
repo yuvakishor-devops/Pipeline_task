@@ -5,7 +5,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/yuvakishor-devops/Pipeline_task.git'
+                git  branch: 'feature', url: 'https://github.com/yuvakishor-devops/Pipeline_task.git'
             }
         }
 

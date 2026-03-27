@@ -29,13 +29,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'podman build -t devops-app .'
+                sh 'docker build -t devops-app .'
             }
         }
 
         stage('Run Container') {
             steps {
-                sh 'podman run -d -p 3000:3000 devops-app || true'
+                sh 'docker run -d -p 3000:3000 devops-app || true'
             }
         }
     }

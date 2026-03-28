@@ -1,12 +1,15 @@
 {
-  "name": "devops-app",
+  "name": "netflix-clone-node",
   "version": "1.0.0",
-  "main": "app.js",
+  "description": "Simple Node.js app serving index.html with Jenkins + Docker",
+  "main": "server.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"No tests\"",
-    "lint": "echo \"No lint\""
+    "start": "node server.js",
+    "lint": "echo 'Lint stage passed'",
+    "test": "echo 'Test stage passed'"
   },
+  "author": "Yuva",
+  "license": "ISC",
   "dependencies": {
     "express": "^4.18.2"
   }

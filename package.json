@@ -1,16 +1,23 @@
 {
   "name": "netflix-clone-node",
   "version": "1.0.0",
-  "description": "Simple Node.js app serving index.html with Jenkins + Docker",
+  "description": "Node.js app with Jenkins + Docker + ESLint",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "lint": "echo 'Lint stage passed'",
-    "test": "echo 'Test stage passed'"
+    "lint": "eslint .",
+    "test": "echo 'Test stage passed'",
+    "build": "echo 'No build step required'"
   },
   "author": "Yuva",
   "license": "ISC",
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "eslint": "8.57.0"
   }
 }

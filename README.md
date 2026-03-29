@@ -281,23 +281,6 @@ http://<EC2-Public-IP>:5000
 
 ---
 
-#  Future Enhancements
-
-* Terraform integration with Jenkins
-* Remote backend (S3 + DynamoDB)
-* Monitoring using CloudWatch
-* Kubernetes deployment
-
----
-
-#  Interview Explanation
-
-> I built a CI/CD pipeline using Jenkins and Docker, and provisioned infrastructure using Terraform.
-> I used Terraform user_data to automatically deploy the application on EC2.
-> I separated CI/CD and infrastructure to keep the system simple and maintainable.
-
----
-
 # 👨‍💻 Author
 
 **Yuva**

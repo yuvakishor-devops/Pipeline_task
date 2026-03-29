@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        WORK_DIR        = "${env.WORKSPACE}"
+	WORK_DIR        = "${env.WORKSPACE}"
         IMAGE_NAME      = "my-netflix-app"
         IMAGE_TAG       = "v1.0"
         CONTAINER_NAME  = "my-netflix-container"
@@ -40,8 +40,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                    docker rmi -f ${IMAGE_NAME}:${IMAGE_TAG} || true
-                    docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
+                docker rmi -f ${IMAGE_NAME}:${IMAGE_TAG} || true
+                docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
                 '''
             }
         }
@@ -49,8 +49,8 @@ pipeline {
         stage('Run Docker Container (Local Test)') {
             steps {
                 sh '''
-                    docker rm -f ${CONTAINER_NAME} || true
-                    docker run -d --name ${CONTAINER_NAME} -p ${HOST_PORT}:${APP_PORT} ${IMAGE_NAME}:${IMAGE_TAG}
+                docker rm -f ${CONTAINER_NAME} || true
+                docker run -d -p ${HOST_PORT}:${APP_PORT} ${IMAGE_NAME}:${IMAGE_TAG}
                 '''
             }
         }
@@ -63,10 +63,10 @@ pipeline {
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
                     sh '''
-                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                        docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${DOCKERHUB_REPO}/${IMAGE_NAME}:${IMAGE_TAG}
-                        docker push ${DOCKERHUB_REPO}/${IMAGE_NAME}:${IMAGE_TAG}
-                        docker logout
+                    echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                    docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${DOCKERHUB_REPO}/${IMAGE_NAME}:${IMAGE_TAG}
+                    docker push ${DOCKERHUB_REPO}/${IMAGE_NAME}:${IMAGE_TAG}
+                    docker logout
                     '''
                 }
             }
@@ -75,10 +75,10 @@ pipeline {
 
     post {
         success {
-            echo 'Pipeline executed successfully!'
+            echo 'pipeline completed successfully!'
         }
         failure {
-            echo 'Pipeline failed. Check logs.'
+            echo 'Pipeline failed!'
         }
     }
 }

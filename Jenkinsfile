@@ -50,7 +50,7 @@ pipeline {
             steps {
                 sh '''
                 docker rm -f ${CONTAINER_NAME} || true
-                docker run -d --name ${CONTAINER_NAME} -p ${HOST_PORT}:${APP_PORT} ${IMAGE_NAME}:${IMAGE_TAG}
+                docker run -d --name ${CONTAINER_NAME} -p ${HOST_PORT}:${APP_PORT} ${DOCKERHUB_REPO}/${IMAGE_NAME}:${IMAGE_TAG}
                 '''
             }
         }

@@ -40,8 +40,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                docker rmi -f ${DOCKERHUB_REPO}/${IMAGE_NAME}:${IMAGE_TAG} || true
-                docker build -t ${DOCKERHUB_REPO}/${IMAGE_NAME}:${IMAGE_TAG} .
+                docker rmi -f ${IMAGE_NAME}:${IMAGE_TAG} || true
+                docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
                 '''
             }
         }
@@ -50,7 +50,7 @@ pipeline {
             steps {
                 sh '''
                 docker rm -f ${CONTAINER_NAME} || true
-                docker run -d --name ${CONTAINER_NAME} -p ${HOST_PORT}:${APP_PORT} ${DOCKERHUB_REPO}/${IMAGE_NAME}:${IMAGE_TAG}
+                docker run -d --name ${CONTAINER_NAME} -p ${HOST_PORT}:${APP_PORT} ${IMAGE_NAME}:${IMAGE_TAG}
                 '''
             }
         }

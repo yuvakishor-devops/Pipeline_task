@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-	WORK_DIR        = "${env.WORKSPACE}"
+		WORK_DIR        = "${env.WORKSPACE}"
         IMAGE_NAME      = "my-netflix-app"
         IMAGE_TAG       = "v1.0"
         CONTAINER_NAME  = "my-netflix-container"
